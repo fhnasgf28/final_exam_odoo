@@ -24,3 +24,11 @@ class ProductTemplate(models.Model):
         for product in self:
             total_qty_booking = sum(line.qty_booking for line in product.order_line_ids if line.order_id.is_booking)
             product.quantity_booking = total_qty_booking
+
+
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
+
+    qty_booking = fields.Float(related='product_tmpl_id.quantity_booking', string='Quantity Booking', readonly=True)
+    qty_after_booking = fields.Float(related='product_tmpl_id.qty_after_booking', string='Quantity After Booking',
+                                     readonly=True)
