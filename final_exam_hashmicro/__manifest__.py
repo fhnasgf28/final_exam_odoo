@@ -26,6 +26,7 @@
         "views/product_views.xml",
         "views/menus.xml",
         "views/fitur_optional/webclient_template_extend.xml",
+        "report/report_booking_order_customer.xml",
     ],
 
     'installable': True,
