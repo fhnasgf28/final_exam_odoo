@@ -1,0 +1,66 @@
+<odoo>
+    <record id="module_purchase_order_inherit_groups" model="ir.module.category">
+        <field name="name">Purchase Order Inherit</field>
+        <field name="sequence">41</field>
+    </record>
+    <!--Purchase Order Customer-->
+    <record model="res.groups" id="group_purchase_order_inherit_customer">
+        <field name="name">Purchase Order Customer</field>
+        <field name="category_id" ref="module_purchase_order_inherit_groups"/>
+    </record>
+    <!--Purchase Order Admin-->
+    <record model="res.groups" id="group_purchase_order_inherit_admin">
+        <field name="name">Purchase Order Admin</field>
+        <field name="category_id" ref="module_purchase_order_inherit_groups"/>
+        <field name="implied_ids" eval="[(4, ref('group_purchase_order_inherit_customer'))]"/>
+    </record>
+    <!--Purchase Order Manager-->
+    <record model="res.groups" id="group_purchase_order_inherit_manager">
+        <field name="name">Purchase Order Manager</field>
+        <field name="category_id" ref="module_purchase_order_inherit_groups"/>
+        <field name="implied_ids" eval="[(4, ref('group_purchase_order_inherit_admin'))]"/>
+    </record>
+
+    <!--rule-->
+    <record id="booking_order_customer_rule" model="ir.rule">
+        <field name="name">Booking Order: customer only sees own orders</field>
+        <field name="model_id" ref="model_purchase_order"/>
+        <field name="groups" eval="[(4, ref('group_purchase_order_inherit_customer'))]"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+     <!-- Rule to allow admins to see all booking orders -->
+    <record id="booking_order_admin_rule" model="ir.rule">
+        <field name="name">Booking Order: admin sees all orders</field>
+        <field name="model_id" ref="model_purchase_order"/>
+        <field name="groups" eval="[(4, ref('group_purchase_order_inherit_admin'))]"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <!-- Rule to allow managers to see all booking orders with full access -->
+    <record id="booking_order_manager_rule" model="ir.rule">
+        <field name="name">Booking Order: manager sees all orders with full access</field>
+        <field name="model_id" ref="model_purchase_order"/>
+        <field name="groups" eval="[(4, ref('group_purchase_order_inherit_manager'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+<!--    restrict menu, hide menu-->
+    <record id="restrict_menu_user" model="ir.rule">
+        <field name="name">Restrict Menu from Users</field>
+        <field ref="model_ir_ui_menu" name="model_id"/>
+        <field name="domain_force">[('restrict_user_ids','not in',user.id)]</field>
+    </record>
+</odoo>
