@@ -17,7 +17,7 @@
                 </xpath>
                 <xpath expr="//button[@name='action_cancel']" position="after">
                     <button name="action_create_rfq" string="Request For Quotation" type="object" class="oe_highlight"
-                            attrs="{'invisible': [('is_booking', '=', False)]}"/>
+                            attrs="{'invisible': ['|', ('is_booking', '=', False), ('state', '!=', 'sale')]}"/>
                 </xpath>
             </field>
         </record>
