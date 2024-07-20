@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_sale_order_report_wizard,sale_order_report_wizard,model_sale_report_wizard,,1,1,1,1
+access_report_booking_order_pdf,import_report_booking_report_wizardpdf,model_booking_report_wizardpdf,,1,1,1,1

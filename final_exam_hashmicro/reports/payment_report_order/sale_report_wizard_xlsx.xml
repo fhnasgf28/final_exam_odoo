@@ -3,10 +3,10 @@
     <data>
 
         <record id="view_booking_order_report_wizard" model="ir.ui.view">
-        <field name="name">sale.report.wizard.form</field>
-        <field name="model">sale.report.wizard</field>
-        <field name="arch" type="xml">
-            <form string="Booking order Report Wizard">
+            <field name="name">sale.report.wizard.form</field>
+            <field name="model">sale.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Booking order Report Wizard">
                     <group>
                         <label for="from_date" string="Periode"/>
                         <div class="o_row">
