@@ -28,6 +28,7 @@
         "views/fitur_optional/webclient_template_extend.xml",
         "wizard/report_booking_order_pdf/booking_order_pdf_wizard.xml",
         "wizard/report_booking_order_pdf/booking_order_pdf_template.xml",
+        "wizard/fitur_optional/whatsapp_send_message_views.xml",
         "reports/report_action.xml",
         "reports/report_booking_order_customer.xml",
         "reports/payment_report_order/sale_report_wizard_xlsx.xml",

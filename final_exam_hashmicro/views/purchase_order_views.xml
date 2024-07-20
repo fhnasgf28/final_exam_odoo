@@ -9,6 +9,12 @@
                 <xpath expr="//field[@name='partner_ref']" position="after">
                         <field name="is_booking"  string="Is Booking" widget="boolean_button" invisible="1"/>
                 </xpath>
+                <xpath expr="//button[@name='button_cancel']" position="after">
+                    <button name="action_refresh_price"
+                            string="Refresh Price"
+                            type="object"
+                         />
+                </xpath>
             </field>
         </record>
     </data>
