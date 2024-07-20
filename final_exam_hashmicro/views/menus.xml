@@ -7,4 +7,15 @@
               sequence="6"
               action="action_booking_order"
         />
+
+    <!-- Sales Reporting Menu -->
+        <menuitem id="sale.menu_sale_report"
+        name="Reporting"
+        sequence="31"
+        parent="sale.sale_menu_root"
+        />
+
+        <menuitem id="sub_menu_sale_order_report" parent="sale.menu_sale_report"
+        action="action_sale_report_wizard" sequence="99"/>
+
 </odoo>

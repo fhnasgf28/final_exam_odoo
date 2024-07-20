@@ -14,19 +14,20 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'product', 'stock', 'purchase','sale_management', 'web'],
+    'depends': ['base', 'product', 'stock', 'purchase','sale_management', 'report_xlsx'],
 
     # always loaded
     'data': [
         # "security/security.xml",
         "data/ir_sequence.xml",
-        # "security/ir.model.access.csv",
+        "security/ir.model.access.csv",
         "views/sale_order_views.xml",
         "views/purchase_order_views.xml",
         "views/product_views.xml",
         "views/menus.xml",
         "views/fitur_optional/webclient_template_extend.xml",
-        "report/report_booking_order_customer.xml",
+        "reports/report_booking_order_customer.xml",
+        "reports/payment_report_order/sale_report_wizard_xlsx.xml",
     ],
 
     'installable': True,
