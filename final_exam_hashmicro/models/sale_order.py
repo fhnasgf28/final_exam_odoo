@@ -1,6 +1,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError, UserError
 from itertools import groupby
+from datetime import datetime, timedelta
 
 
 class SaleOrder(models.Model):
@@ -9,6 +10,8 @@ class SaleOrder(models.Model):
     is_booking = fields.Boolean(string='Is Booking', default=False)
     date_created = fields.Datetime(string='Creation Date', default=fields.Datetime.now)
     rfq_created = fields.Boolean(string="RFQ Created", default=False)
+    expired_three_days = fields.Boolean(string='Expire in 3 Day',
+                                        compute="_compute_expire_in_three_days", store=True)
 
     @api.model
     def create(self, vals):
@@ -20,6 +23,38 @@ class SaleOrder(models.Model):
             vals['name'] = self.env['ir.sequence'].next_by_code(sequence_code) or _('New')
         res = super(SaleOrder, self).create(vals)
         return res
+
+    # ir.cron
+    # cancel after 3 day if not process
+    @api.model
+    def _cancel_unprocessed_orders(self):
+        record_three_days = fields.Datetime.to_string(datetime.now() + timedelta(days=3))
+        unprocessed_orders = self.env['sale.order'].search([
+            ('create_date', '<', record_three_days),
+            ('state', '=', 'draft'),
+            ('is_booking', '=', True)
+        ])
+        for order in unprocessed_orders:
+            order.action_cancel()
+
+        return True
+
+    # masih perlu diuji coba
+    @api.depends('create_date', 'state', 'is_booking')
+    def _compute_expire_in_three_days(self):
+        today = datetime.now()
+        start_date = today + timedelta(days=3)
+        for order in self:
+            if order.state == 'draft' and order.is_booking and order.create_date:
+                create_date = fields.Datetime.from_string(order.create_date)
+                order.expired_three_days = start_date <= create_date
+            else:
+                order.expired_three_days = False
+
+    @api.onchange('date_order')
+    def _onchange_date_order(self):
+        if self.date_order:
+            self.validity_date = self.date_order + timedelta(days=3)
 
     def action_create_rfq(self):
         for record in self:
@@ -144,12 +179,12 @@ class SaleOrderLine(models.Model):
         for record in self:
             record.product_template_id = record.product_id.product_tmpl_id
 
-    # @api.onchange('order_id.is_booking', 'price_unit', 'product_id')
-    # def _onchange_is_booking(self):
-    #     for line in self:
-    #         if line.product_id:
-    #             price = line.product_id.lst_price
-    #             if line.order_id.is_booking:
-    #                 line.price_unit = price * 1.1
-    #             else:
-    #                 line.price_unit = price
+    @api.onchange('order_id.is_booking', 'price_unit', 'product_id')
+    def _onchange_is_booking(self):
+        for line in self:
+            if line.product_id:
+                price = line.product_id.lst_price
+                if line.order_id.is_booking:
+                    line.price_unit = price * 1.1
+                else:
+                    line.price_unit = price

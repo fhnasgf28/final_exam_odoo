@@ -20,6 +20,7 @@
     'data': [
         # "security/security.xml",
         "data/ir_sequence.xml",
+        "data/ir_cron.xml",
         "security/ir.model.access.csv",
         "views/sale_order_views.xml",
         "views/purchase_order_views.xml",
