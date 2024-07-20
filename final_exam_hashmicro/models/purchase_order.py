@@ -34,7 +34,7 @@ class PurchaseOrder(models.Model):
         for line in self.order_line:
             products = self.env['product.product'].browse(line.product_id.id)
             for vendor in products.seller_ids:
-                if self.partner_id.id == vendor.partner_id.id:
+                if self.partner_id.id == vendor.name.id:
                     vendor.write({
                         'price': line.price_unit
                     })
@@ -44,7 +44,7 @@ class PurchaseOrder(models.Model):
             products = self.env['product.product'].browse(line.product_id.id)
             purchase_date = date.today()
             for vendor in products.seller_ids:
-                if self.partner_id.id == vendor.partner_id.id:
+                if self.partner_id.id == vendor.name.id:
                     vendor.write({
                         'purchase_date': purchase_date
                     })
