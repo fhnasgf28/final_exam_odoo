@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from datetime import date
 
 
 class PurchaseOrder(models.Model):
@@ -22,4 +23,29 @@ class PurchaseOrder(models.Model):
             )
             if supplierinfo:
                 line.price_unit = supplierinfo[0].price
+
+    def button_confirm(self):
+        res = super(PurchaseOrder, self).button_confirm()
+        self.update_vendor_price()
+        self.update_purchase_date()
+        return res
+
+    def update_vendor_price(self):
+        for line in self.order_line:
+            products = self.env['product.product'].browse(line.product_id.id)
+            for vendor in products.seller_ids:
+                if self.partner_id.id == vendor.partner_id.id:
+                    vendor.write({
+                        'price': line.price_unit
+                    })
+
+    def update_purchase_date(self):
+        for line in self.order_line:
+            products = self.env['product.product'].browse(line.product_id.id)
+            purchase_date = date.today()
+            for vendor in products.seller_ids:
+                if self.partner_id.id == vendor.partner_id.id:
+                    vendor.write({
+                        'purchase_date': purchase_date
+                    })
 
