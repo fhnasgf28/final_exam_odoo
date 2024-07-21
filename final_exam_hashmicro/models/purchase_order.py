@@ -20,11 +20,27 @@ class PurchaseOrder(models.Model):
             if supplierinfo:
                 line.price_unit = supplierinfo[0].price
 
+    # smart Button
+    def action_view_booking_orders(self):
+        if self.is_booking:
+            action = self.env.ref('sale.action_quotations').read()[0]
+            action['domain'] = [('id', '=', self.booking_order_id.id)]
+            return action
+        else:
+            return {
+                'warning': {
+                    'title': 'Not a Booking Order',
+                    'message': 'This record is not a booking order.',
+                }
+            }
+
     def button_confirm(self):
         res = super(PurchaseOrder, self).button_confirm()
         self.update_vendor_price()
         self.update_button_confirm()
         self.create_invoice_order()
+        self.update_purchase_date()
+
         return res
 
     def update_button_confirm(self):
@@ -72,12 +88,12 @@ class PurchaseOrder(models.Model):
                 invoice.action_post()  # Validate the invoice
                 order.invoice_ids = [(4, invoice.id)]
 
-    # def update_purchase_date(self):
-    #     for line in self.order_line:
-    #         products = self.env['product.product'].browse(line.product_id.id)
-    #         purchase_date = date.today()
-    #         for vendor in products.seller_ids:
-    #             if self.partner_id.id == vendor.name.id:
-    #                 vendor.write({
-    #                     'purchase_date': purchase_date
-    #                 })
+    def update_purchase_date(self):
+        for line in self.order_line:
+            products = self.env['product.product'].browse(line.product_id.id)
+            purchase_date = date.today()
+            for vendor in products.seller_ids:
+                if self.partner_id.id == vendor.name.id:
+                    vendor.write({
+                        'purchase_date': purchase_date
+                    })

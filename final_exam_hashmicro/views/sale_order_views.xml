@@ -12,7 +12,8 @@
                         <field name="is_booking"/>
                     </group>
                 </xpath>
-                <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
+                <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_uom_qty']"
+                       position="after">
                     <field name="qty_booking"/>
                 </xpath>
                 <xpath expr="//button[@name='action_cancel']" position="after">
@@ -23,12 +24,12 @@
                     <button name="action_refresh_price"
                             string="Refresh Price"
                             type="object"
-                         />
+                    />
                 </xpath>
                 <xpath expr="//button[@name='action_quotation_send']" position="after">
-                <button type="object" class="oe_stat_button" style="background-color: #25D366;color: white;"
-                        name="action_send_whatsapp" icon="fa-whatsapp" string="Send by Whatsapp"/>
-            </xpath>
+                    <button type="object" class="oe_stat_button" style="background-color: #25D366;color: white;"
+                            name="action_send_whatsapp" icon="fa-whatsapp" string="Send by Whatsapp"/>
+                </xpath>
             </field>
         </record>
         <!--search view-->
@@ -38,7 +39,8 @@
             <field name="inherit_id" ref="sale.view_sales_order_filter"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='name']" position="before">
-                    <filter name="three_days_expiry" string="Three Day Expired" domain="[('expired_three_days', '=', True)]"/>
+                    <filter name="three_days_expiry" string="Three Day Expired"
+                            domain="[('expired_three_days', '=', True)]"/>
                 </xpath>
             </field>
         </record>
@@ -52,23 +54,23 @@
                     <filter name="booking_order" string="Hide Booking Order" domain="[('is_booking','=', False)]"/>
                 </xpath>
             </field>
-         </record>
+        </record>
 
         <!-- Inheriting sale order tree for adding button for sending multiple sale orders via WhatsApp.-->
-    <record id="view_quotation_tree_with_onboarding" model="ir.ui.view">
-        <field name="name">sale.order.view.list.inherited.whatsapp.mail.messaging</field>
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
-        <field name="arch" type="xml">
-            <xpath expr="//tree" position="inside">
-                <header>
-                    <button type="object" class="btn-primary ml4"
-                            name="action_whatsapp_multi" icon="fa-whatsapp" string="Send by Whatsapp"/>
-                </header>
-            </xpath>
-        </field>
-    </record>
-    <!--action booking order-->
+        <record id="view_quotation_tree_with_onboarding" model="ir.ui.view">
+            <field name="name">sale.order.view.list.inherited.whatsapp.mail.messaging</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="inside">
+                    <header>
+                        <button type="object" class="btn-primary ml4"
+                                name="action_whatsapp_multi" icon="fa-whatsapp" string="Send by Whatsapp"/>
+                    </header>
+                </xpath>
+            </field>
+        </record>
+        <!--action booking order-->
         <record id="action_booking_order" model="ir.actions.act_window">
             <field name="name">Booking Orders</field>
             <field name="res_model">sale.order</field>
@@ -76,6 +78,13 @@
             <field name="domain">[('is_booking', '=', True)]</field>
             <field name="search_view_id" ref="view_sale_order_search_inherit"/>
             <field name="context">{'default_is_booking': True, 'search_default_three_days_expiry': 1}</field>
+        </record>
+        <!--action smart button point-->
+        <record id="action_booking_orders" model="ir.actions.act_window">
+            <field name="name">Booking Orders</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('id', '=', context.get('default_booking_order_id'))]</field>
         </record>
     </data>
 </odoo>

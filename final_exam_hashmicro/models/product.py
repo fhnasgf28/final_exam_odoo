@@ -32,3 +32,9 @@ class ProductProduct(models.Model):
     qty_booking = fields.Float(related='product_tmpl_id.quantity_booking', string='Quantity Booking', readonly=True)
     qty_after_booking = fields.Float(related='product_tmpl_id.qty_after_booking', string='Quantity After Booking',
                                      readonly=True)
+
+
+class SupplierInfo(models.Model):
+    _inherit = 'product.supplierinfo'
+
+    purchase_date = fields.Date(string="Purchase Date")
