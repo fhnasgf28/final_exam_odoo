@@ -192,7 +192,6 @@ class SaleOrderLine(models.Model):
 
     # update quantity product if edit
     def write(self, vals):
-        print("method write")
         for line in self:
             if 'product_uom_qty' in vals:
                 product = line.product_id
