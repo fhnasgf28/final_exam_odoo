@@ -25,6 +25,7 @@
         "views/sale_order_views.xml",
         "views/purchase_order_views.xml",
         "views/product_views.xml",
+        "views/booking_order_pivot_views.xml",
         "views/menus.xml",
         "views/fitur_optional/webclient_template_extend.xml",
         "views/fitur_optional/res_user_views.xml",

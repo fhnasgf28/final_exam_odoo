@@ -60,10 +60,11 @@ class SaleOrder(models.Model):
         for record in self:
             if record.rfq_created:
                 raise ValidationError(f'Product {record.name} already been added to RFQ.')
+            sequence_name = self.env['ir.sequence'].next_by_code('request.quotation') or _('New')
             rfq = self.env['purchase.order'].create({
                 'partner_id': record.partner_id.id,
                 'date_order': fields.Datetime.now(),
-                'name': record.name,
+                'name': sequence_name,
                 'is_booking': True,
                 'order_line': [(0, 0, {
                     'product_id': line.product_id.id,
@@ -188,3 +189,25 @@ class SaleOrderLine(models.Model):
                     line.price_unit = price * 1.1
                 else:
                     line.price_unit = price
+
+    # update quantity product if edit
+    def write(self, vals):
+        print("method write")
+        for line in self:
+            if 'product_uom_qty' in vals:
+                product = line.product_id
+                new_qty = vals['product_uom_qty']
+                qty_difference = new_qty - line.product_uom_qty
+                if qty_difference > 0 and product.qty_available < qty_difference:
+                    raise ValidationError(_('Not Enough quantity Available for Product %s') % product.display_name)
+                product.qty_available -= qty_difference
+        return super(SaleOrderLine, self).write(vals)
+
+    # add product if product unlink(delete)
+    def unlink(self):
+        for line in self:
+            if line.product_id:
+                if line.order_id.is_booking:
+                    product = line.product_id
+                    product.qty_available += line.product_uom_qty
+        return super(SaleOrderLine, self).unlink()

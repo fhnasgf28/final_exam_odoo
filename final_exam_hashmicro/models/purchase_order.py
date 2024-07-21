@@ -1,5 +1,6 @@
 from odoo import models, fields, api, _
 from datetime import date
+from odoo.exceptions import ValidationError
 
 
 class PurchaseOrder(models.Model):
@@ -7,12 +8,6 @@ class PurchaseOrder(models.Model):
 
     is_booking = fields.Boolean(string='Is Booking', default=False)
     booking_order_id = fields.Many2one('sale.order', string='Booking Order')
-
-    def write(self, vals):
-        for record in self:
-            if record.is_booking:
-                vals['name'] = self.env['ir.sequence'].next_by_code('request.quotation') or _('New')
-        return super(PurchaseOrder, self).write(vals)
 
     # (optional) fitur refresh price
     def action_refresh_price(self):
@@ -27,8 +22,14 @@ class PurchaseOrder(models.Model):
     def button_confirm(self):
         res = super(PurchaseOrder, self).button_confirm()
         self.update_vendor_price()
-        self.update_purchase_date()
+        self.update_button_confirm()
         return res
+
+    def update_button_confirm(self):
+        for order in self:
+            if order.state == 'purchase':
+                order.name = self.env["ir.sequence"].next_by_code('purchase.order.seq') or _("New")
+        return super(PurchaseOrder, self).button_confirm()
 
     def update_vendor_price(self):
         for line in self.order_line:
@@ -39,13 +40,13 @@ class PurchaseOrder(models.Model):
                         'price': line.price_unit
                     })
 
-    def update_purchase_date(self):
-        for line in self.order_line:
-            products = self.env['product.product'].browse(line.product_id.id)
-            purchase_date = date.today()
-            for vendor in products.seller_ids:
-                if self.partner_id.id == vendor.name.id:
-                    vendor.write({
-                        'purchase_date': purchase_date
-                    })
+    # def update_purchase_date(self):
+    #     for line in self.order_line:
+    #         products = self.env['product.product'].browse(line.product_id.id)
+    #         purchase_date = date.today()
+    #         for vendor in products.seller_ids:
+    #             if self.partner_id.id == vendor.name.id:
+    #                 vendor.write({
+    #                     'purchase_date': purchase_date
+    #                 })
 
