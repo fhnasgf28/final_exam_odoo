@@ -18,15 +18,16 @@
 
     # always loaded
     'data': [
-        # "security/security.xml",
+        "security/security.xml",
+        "security/ir.model.access.csv",
         "data/ir_sequence.xml",
         "data/ir_cron.xml",
-        "security/ir.model.access.csv",
         "views/sale_order_views.xml",
         "views/purchase_order_views.xml",
         "views/product_views.xml",
         "views/menus.xml",
         "views/fitur_optional/webclient_template_extend.xml",
+        "views/fitur_optional/res_user_views.xml",
         "wizard/report_booking_order_pdf/booking_order_pdf_wizard.xml",
         "wizard/report_booking_order_pdf/booking_order_pdf_template.xml",
         "wizard/fitur_optional/whatsapp_send_message_views.xml",

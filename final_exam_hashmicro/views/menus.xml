@@ -1,21 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-    <menuitem id="menu_sale_order_inherit"
-              name="Booking Order"
-              parent="sale.sale_order_menu"
-              sequence="6"
-              action="action_booking_order"
-        />
+<!--    <menuitem id="menu_sale_order_inherit"-->
+<!--              name="Booking Order"-->
+<!--              parent="sale.sale_order_menu"-->
+<!--              sequence="6"-->
+<!--              action="action_booking_order"-->
+<!--        />-->
 
     <!-- Sales Reporting Menu -->
-        <menuitem id="sale.menu_sale_report"
-        name="Reporting"
-        sequence="31"
-        parent="sale.sale_menu_root"
-        />
+<!--    <menuitem id="sale.menu_sale_report"-->
+<!--            name="Reporting"-->
+<!--            sequence="31"-->
+<!--            parent="sale.sale_menu_root"-->
+<!--            groups="final_exam_hashmicro.group_sale_order_inherit_admin,final_exam_hashmicro.group_sale_order_inherit_manager"/>-->
+<!--            />-->
 
-        <menuitem id="sub_menu_sale_order_report" parent="sale.menu_sale_report"
-        action="action_sale_report_wizard" sequence="99"/>
+<!--    <menuitem id="sub_menu_sale_order_report"-->
+<!--              parent="sale.menu_sale_report"-->
+<!--              action="action_sale_report_wizard"-->
+<!--              groups="final_exam_hashmicro.group_sale_order_inherit_admin,final_exam_hashmicro.group_sale_order_inherit_manager"-->
+<!--              sequence="99"/>-->
+
+
+    <!--override menu sale order-->
+    <!-- Remove access for the Customer group from specific menus -->
+        <record id="sale.sale_order_menu" model="ir.ui.menu">
+           <field name="groups_id" eval="[(6,0,[ref('final_exam_hashmicro.group_sale_order_inherit_manager')])]"/>
+        </record>
+        
+        <record id="sale.menu_sale_quotations" model="ir.ui.menu">
+           <field name="groups_id" eval="[(6,0,[ref('final_exam_hashmicro.group_sale_order_inherit_manager')])]"/>
+        </record>
+        
+        <record id="sale.menu_sale_invoicing" model="ir.ui.menu">
+           <field name="groups_id" eval="[(6,0,[ref('final_exam_hashmicro.group_sale_order_inherit_manager')])]"/>
+        </record>
+
+        <record id="sale.product_menu_catalog" model="ir.ui.menu">
+           <field name="groups_id" eval="[(6,0,[ref('final_exam_hashmicro.group_sale_order_inherit_manager')])]"/>
+        </record>
+        
+        <record id="sale.menu_sale_config" model="ir.ui.menu">
+          <field name="groups_id" eval="[(6,0,[ref('final_exam_hashmicro.group_sale_order_inherit_manager')])]"/>
+        </record>
+        
+        <record id="sale.menu_sale_report" model="ir.ui.menu">
+           <field name="groups_id" eval="[(6,0,[ref('final_exam_hashmicro.group_sale_order_inherit_manager')])]"/>
+        </record>
+
+        <!-- Definisi Menu Root -->
+        <menuitem id="menu_sales_root" name="Sales" sequence="10" groups="group_sale_order_inherit_customer,group_sale_order_inherit_admin,group_sale_order_inherit_manager"/>
+
+        <!-- Definisi Menu Child -->
+        <menuitem id="menu_sale_order" name="Orders" parent="menu_sales_root" action="action_booking_order" sequence="10" groups="group_sale_order_inherit_customer,group_sale_order_inherit_admin,group_sale_order_inherit_manager"/>
+
 
 </odoo>
