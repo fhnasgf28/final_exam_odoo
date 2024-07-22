@@ -41,29 +41,26 @@
 ![final_exam_hashmicro12](/final_exam_hashmicro/static/src/img/readme/reporting-pdf2-customer2.png)
 ![final_exam_hashmicro13](/final_exam_hashmicro/static/src/img/readme/reporting-pdf2-customer3.png)
 
+## External Link In Product
+![final_exam_hashmicro14](/final_exam_hashmicro/static/src/img/readme/external-link.png)
+![final_exam_hashmicro16](/final_exam_hashmicro/static/src/img/readme/external-link1.png)
 
+## Button to RFQ
+- Smart Button to RFQ
+![final_exam_hashmicro17](/final_exam_hashmicro/static/src/img/readme/smart-button.png)
+![final_exam_hashmicro21](/final_exam_hashmicro/static/src/img/readme/smart-button1.png)
 
+## Button RFQ(Request For Quotation)
+- RFQ
+![final_exam_hashmicro19](/final_exam_hashmicro/static/src/img/readme/rfq-button.png)
+![final_exam_hashmicro28](/final_exam_hashmicro/static/src/img/readme/rfq-button1.png)
+- ValidationError if record Exist
+![final_exam_hashmicro17](/final_exam_hashmicro/static/src/img/readme/rfq-button2.png)
 
-## Name
+## Optional Fitur
+### Button WhatsApp
 
-## Description
+- ![final_exam_hashmicro22](/final_exam_hashmicro/static/src/img/readme/whatsApp.png)
+- ![final_exam_hashmicro22](/final_exam_hashmicro/static/src/img/readme/whatsApp1.png)
+- ![final_exam_hashmicro22](/final_exam_hashmicro/static/src/img/readme/whatsApp2.png)
 
-## Badges
-
-## Visuals
-
-## Installation
-
-## Usage
-
-## Support
-
-## Roadmap
-
-## Contributing
-
-## Authors and acknowledgment
-
-## License
-
-## Project status
