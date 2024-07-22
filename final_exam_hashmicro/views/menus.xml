@@ -34,40 +34,37 @@
               sequence="99"
               />
 
-
-
-
     <!-- Sales Reporting Menu -->
-<!--    <menuitem id="sale.menu_sale_report"-->
-<!--            name="Reporting"-->
-<!--            sequence="31"-->
-<!--            parent="sale.sale_menu_root"-->
-<!--            groups="final_exam_hashmicro.group_sale_order_inherit_admin,final_exam_hashmicro.group_sale_order_inherit_manager"/>-->
-<!--            />-->
+    <menuitem id="sale.menu_sale_report"
+            name="Reporting"
+            sequence="31"
+            parent="sale.sale_menu_root"
+            groups="final_exam_hashmicro.group_sale_order_inherit_admin,final_exam_hashmicro.group_sale_order_inherit_manager"/>
+            />
 
-<!--    <menuitem id="sub_menu_sale_order_report"-->
-<!--              parent="sale.menu_sale_report"-->
-<!--              action="action_sale_report_wizard"-->
-<!--              groups="final_exam_hashmicro.group_sale_order_inherit_admin,final_exam_hashmicro.group_sale_order_inherit_manager"-->
-<!--              sequence="99"/>-->
+    <menuitem id="sub_menu_sale_order_report"
+              parent="sale.menu_sale_report"
+              action="action_sale_report_wizard"
+              groups="final_exam_hashmicro.group_sale_order_inherit_admin,final_exam_hashmicro.group_sale_order_inherit_manager"
+              sequence="99"/>
 
-    <!--override menu sale order-->
-<!--        <menuitem id="sale.menu_sale_config"-->
-<!--            name="Configuration"-->
-<!--            parent="sale.sale_menu_root"-->
-<!--            sequence="6"-->
-<!--            groups="sales_team.group_sale_salesman,final_exam_hashmicro.group_sale_order_inherit_admin,final_exam_hashmicro.group_sale_order_inherit_manager"/>-->
+    override menu sale order
+        <menuitem id="sale.menu_sale_config"
+            name="Configuration"
+            parent="sale.sale_menu_root"
+            sequence="6"
+            groups="sales_team.group_sale_salesman,final_exam_hashmicro.group_sale_order_inherit_admin,final_exam_hashmicro.group_sale_order_inherit_manager"/>
 
-<!--        <menuitem id="sale.product_menu_catalog"-->
-<!--            name="Products"-->
-<!--            parent="sale.sale_menu_root"-->
-<!--            sequence="4"-->
-<!--            groups="sales_team.group_sale_salesman,final_exam_hashmicro.group_sale_order_inherit_admin,final_exam_hashmicro.group_sale_order_inherit_manager"/>-->
+        <menuitem id="sale.product_menu_catalog"
+            name="Products"
+            parent="sale.sale_menu_root"
+            sequence="4"
+            groups="sales_team.group_sale_salesman,final_exam_hashmicro.group_sale_order_inherit_admin,final_exam_hashmicro.group_sale_order_inherit_manager"/>
 
-<!--        <menuitem id="sale.menu_sale_invoicing"-->
-<!--            name="To Invoice"-->
-<!--            parent="sale.sale_menu_root"-->
-<!--            sequence="3"-->
-<!--            groups="sales_team.group_sale_salesman,final_exam_hashmicro.group_sale_order_inherit_admin,final_exam_hashmicro.group_sale_order_inherit_manager"/>-->
+        <menuitem id="sale.menu_sale_invoicing"
+            name="To Invoice"
+            parent="sale.sale_menu_root"
+            sequence="3"
+            groups="sales_team.group_sale_salesman,final_exam_hashmicro.group_sale_order_inherit_admin,final_exam_hashmicro.group_sale_order_inherit_manager"/>
 
 </odoo>
