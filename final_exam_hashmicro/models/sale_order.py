@@ -83,6 +83,20 @@ class SaleOrder(models.Model):
                 'view_mode': 'form',
             }
 
+    # maximum limit per order
+    @api.constrains('order_line')
+    def _check_order_line_limit(self):
+        config = self.env['booking.order.config'].search([], limit=1)
+        if config:
+            for order in self:
+                total_qty = sum(
+                    line.product_id.qty_available + (
+                            line.product_id.qty_available * config.qty_limit_percentage / 100)
+                    for line in order.order_line
+                )
+                if total_qty > config.max_booking_order:
+                    raise ValidationError('Total booking quantity exceeds the maximum limit per order.')
+
     # refresh price
     def action_refresh_price(self):
         self.ensure_one()
@@ -189,6 +203,15 @@ class SaleOrderLine(models.Model):
                     line.price_unit = price * 1.1
                 else:
                     line.price_unit = price
+
+        # config booking order, check max booking
+        @api.constrains('qty_booking')
+        def _check_max_booking_order(self):
+            for line in self:
+                config = self.env['booking.order.config'].search([], limit=1)
+                if config and line.qty_booking > config.max_booking_order:
+                    raise ValidationError(
+                        _('Quantity cannot exceed the maximum booking order of %s') % config.max_booking_order)
 
     # update quantity product if edit
     def write(self, vals):

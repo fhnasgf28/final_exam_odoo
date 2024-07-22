@@ -3,8 +3,11 @@ access_sale_order_report_wizard,sale_order_report_wizard,model_sale_report_wizar
 access_report_booking_order_pdf,import_report_booking_report_wizardpdf,model_booking_report_wizardpdf,,1,1,1,1
 access_whatsapp_send_message_user,access.whatsapp.send.message.user,model_whatsapp_send_message,base.group_user,1,1,1,1
 
-access_sale_order_customer,sale.order,sale.model_sale_order,group_sale_order_inherit_customer,group_sale_order_inherit_admin,group_sale_order_inherit_manager,1,1,0,0
-access_sale_order_admin,sale.order,sale.model_sale_order,group_sale_order_inherit_customer,group_sale_order_inherit_admin,group_sale_order_inherit_manager,1,1,1,1
-access_sale_order_manager,sale.order,sale.model_sale_order,group_sale_order_inherit_customer,group_sale_order_inherit_admin,group_sale_order_inherit_manager,1,1,1,1
+access_sale_order_customer,sale.order,sale.model_sale_order,,1,1,0,0
+access_sale_order_admin,sale.order,sale.model_sale_order,,1,1,1,1
+access_sale_order_manager,sale.order,sale.model_sale_order,,1,1,1,1
 
 access_booking_order_pivot,sale_order_booking_order_pivot,model_booking_order_pivot,,1,1,1,1
+access_configuration_booking_order,configuration.booking.order,model_booking_order_config,,1,1,1,1
+access_report_booking_order_wizard,import_report_booking_order_wizard,model_booking_order_report_wizard,,1,1,1,1
+
