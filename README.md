@@ -17,15 +17,32 @@
 # Menu Reporting
 - Menu Reporting
 ![final_exam_hashmicro6](/final_exam_hashmicro/static/src/img/readme/reporting.png)
-- Booking Order Pivot
+- Report Booking Order Pivot 
 ![final_exam_hashmicro5](/final_exam_hashmicro/static/src/img/readme/reporting-pivot.png)
     - Pivot
 ![final_exam_hashmicro8](/final_exam_hashmicro/static/src/img/readme/reporting-pivot1.png)
-        
+  
+- Reporting Excel
+![final_exam_hashmicro8](/final_exam_hashmicro/static/src/img/readme/reporting-excel.png)
+    - Result Report Excel
+![final_exam_hashmicro8](/final_exam_hashmicro/static/src/img/readme/reporting-excel1.png)
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+- Reporting PDF
+![final_exam_hashmicro8](/final_exam_hashmicro/static/src/img/readme/reporting-pdf.png)
+    - Result Report PDF
+![final_exam_hashmicro8](/final_exam_hashmicro/static/src/img/readme/reporting-pdf1.png)
 
-## Suggestions for a good README
+## Reporting PDF Cutomer
+![final_exam_hashmicro10](/final_exam_hashmicro/static/src/img/readme/reporting-pdf2-customer.png)
+    - Result Reporting PDF Customer if is_booking False
+![final_exam_hashmicro11](/final_exam_hashmicro/static/src/img/readme/reporting-pdf2-customer1.png)
+
+- Result Reporting PDF Customer if is_booking True
+![final_exam_hashmicro12](/final_exam_hashmicro/static/src/img/readme/reporting-pdf2-customer2.png)
+![final_exam_hashmicro13](/final_exam_hashmicro/static/src/img/readme/reporting-pdf2-customer3.png)
+
+
+
 
 ## Name
 
