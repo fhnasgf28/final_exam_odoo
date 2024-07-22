@@ -14,7 +14,7 @@
 - Max Quantity Booking
 ![final_exam_hashmicro3](/final_exam_hashmicro/static/src/img/readme/config-menu1.png)
 
-# Menu Reporting
+## Menu Reporting
 - Menu Reporting
 ![final_exam_hashmicro6](/final_exam_hashmicro/static/src/img/readme/reporting.png)
 - Report Booking Order Pivot 
@@ -58,9 +58,17 @@
 ![final_exam_hashmicro17](/final_exam_hashmicro/static/src/img/readme/rfq-button2.png)
 
 ## Optional Fitur
-### Button WhatsApp
 
+### Button WhatsApp
 - ![final_exam_hashmicro22](/final_exam_hashmicro/static/src/img/readme/whatsApp.png)
 - ![final_exam_hashmicro22](/final_exam_hashmicro/static/src/img/readme/whatsApp1.png)
 - ![final_exam_hashmicro22](/final_exam_hashmicro/static/src/img/readme/whatsApp2.png)
+
+### Refresh Price
+- ![final_exam_hashmicro24](/final_exam_hashmicro/static/src/img/readme/refresh-price1.png)
+
+### Hide Menu For Any User
+- ![final_exam_hashmicro25](/final_exam_hashmicro/static/src/img/readme/hide-menu.png)
+- ![final_exam_hashmicro26](/final_exam_hashmicro/static/src/img/readme/hide-menu1.png)
+
 
